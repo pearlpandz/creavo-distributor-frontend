@@ -3,7 +3,7 @@ import DataTable from "../components/DataTable";
 import { LICENSE_COLUMNS } from "../constants/columns";
 import { useEffect, useState } from "react";
 import { API_URL } from "../constants/settings";
-import axios from "axios";
+import axios from "../utils/axios-interceptor";
 
 function License() {
     const [data, setData] = useState([]);
@@ -12,8 +12,8 @@ function License() {
 
     const fetchData = async (userId) => {
         try {
-            const url = `${API_URL}/accounts/licenses/distributor/${userId}/`;
-            const response = await axios.get(url, { withCredentials: true, });
+            const url = `/accounts/licenses/distributor/${userId}/`;
+            const response = await axios.get(url);
             const data = response.data
             setData(data);
         } catch (error) {

@@ -67,17 +67,6 @@ function App() {
     localStorage.removeItem('userDetails');
   }
 
-  // useEffect(() => {
-  //   const getCSRFToken = async () => {
-  //     try {
-  //       await axios.get('http://localhost:8000/get_csrf', { withCredentials: true })
-  //     } catch (error) {
-  //       console.error('Error fetching CSRF token:', error);
-  //     }
-  //   }
-  // getCSRFToken()
-  // }, [])
-
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <AuthContext.Provider value={{ isAuthenticated, userDetails, login, logout }}>

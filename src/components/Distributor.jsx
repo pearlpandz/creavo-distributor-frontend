@@ -3,7 +3,7 @@ import DataTable from "./DataTable";
 import CreateModal from "./CreateDistributorModal";
 import { API_URL } from "../constants/settings";
 import { DISTRIBUTOR_COLUMNS } from "../constants/columns";
-import axios from "axios";
+import axios from "../utils/axios-interceptor";
 import { Snackbar, Alert } from '@mui/material';
 
 export function Distributor() {
@@ -15,8 +15,8 @@ export function Distributor() {
 
     const fetchData = async () => {
         try {
-            const url = `${API_URL}/accounts/distributors/`;
-            const response = await axios.get(url, { withCredentials: true, });
+            const url = `/accounts/distributors/`;
+            const response = await axios.get(url);
             const data = response.data?.map((item) => ({ ...item, name: item.first_name + ' ' + item.last_name }));
             setData(data);
         } catch (error) {
@@ -38,7 +38,7 @@ export function Distributor() {
 
     const onSubmit = async (data) => {
         try {
-            const url = `${API_URL}/accounts/distributors/`;
+            const url = `/accounts/distributors/`;
             const payload = {
                 first_name: data.firstName,
                 last_name: data.lastName,
@@ -47,7 +47,7 @@ export function Distributor() {
                 password: data.password,
                 created_by: userId,
             }
-            const response = await axios.post(url, payload, { withCredentials: true, });
+            const response = await axios.post(url, payload);
             if (response.status === 201) {
                 fetchData();
                 setOpen(false);
