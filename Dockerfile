@@ -20,7 +20,7 @@ RUN npm run build
 RUN npm install -g serve
 
 # Expose port 3001
-EXPOSE 3001
+EXPOSE 3002
 
 # Start the app
 CMD ["serve", "-s", "dist", "-l", "3001"]
