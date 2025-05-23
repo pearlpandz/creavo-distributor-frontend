@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  distributor:
+    image: ghcr.io/pearlpandz/creavo/distributor
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
